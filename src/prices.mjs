@@ -29,7 +29,6 @@ function createApp(database) {
       return Temporal.PlainDate.from(dateString);
     }
   }
-
   function parsePlainDate() {
     return 0;
   }
