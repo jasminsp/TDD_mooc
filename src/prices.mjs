@@ -58,8 +58,8 @@ function createApp(database) {
     return baseCost;
   }
 
-  function calculateCostForDayTicket(age, baseCost, date, date2) {
-    let reduction = calculateReduction(date, date2);
+  function calculateCostForDayTicket(age, baseCost, date) {
+    let reduction = calculateReduction(date);
     if (age === undefined) {
       return Math.ceil(baseCost * (1 - reduction / 100));
     }
