@@ -83,11 +83,11 @@ function createApp(database) {
     return reduction;
   }
 
-  function isMonday(date) {
+  function isMonday(date, date2) {
     return date.getDay() === 1;
   }
 
-  function isHoliday(date) {
+  function isHoliday(date, date2) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
       let holiday = new Date(row.holiday);
