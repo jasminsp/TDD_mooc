@@ -1,7 +1,9 @@
 export class Board {
   width;
   height;
-  falling;
+  fallingBlock;
+  EMPTY = ".";
+  fallingBlockRow = 0;
 
   constructor(width, height) {
     this.width = width;
@@ -13,18 +15,33 @@ export class Board {
 
     for (let row = 0; row < this.width; row++) {
       for (let col = 0; col < this.height; col++) {
-        if (row === 0 && col === 1 && this.falling) {
-          board += "X";
-        } else {
-          board += ".";
-        }
+        board += this.hasFallingAt(row, col) ? this.fallingBlock : this.EMPTY;
       }
       board += "\n";
     }
     return board;
   }
 
+  hasFallingAt(row, col) {
+    return this.hasFalling() && row === this.fallingBlockRow && col === 1;
+  }
+
+  hasFalling() {
+    return this.fallingBlock !== undefined;
+  }
+
   drop(block) {
-    this.falling = true;
+    if (this.hasFalling()) {
+      throw Error("already falling");
+    }
+    this.fallingBlock = block.color;
+  }
+
+  tick() {
+    if (this.fallingBlockRow === this.width - 1) {
+      this.fallingBlock = null;
+    } else {
+      this.fallingBlockRow++;
+    }
   }
 }
