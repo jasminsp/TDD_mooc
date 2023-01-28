@@ -1,6 +1,7 @@
 export class Board {
   width;
   height;
+  falling;
 
   constructor(width, height) {
     this.width = width;
@@ -8,14 +9,22 @@ export class Board {
   }
 
   toString() {
-    let strings = "";
+    let board = "";
 
     for (let row = 0; row < this.width; row++) {
       for (let col = 0; col < this.height; col++) {
-        strings += ".";
+        if (row === 0 && col === 1 && this.falling) {
+          board += "X";
+        } else {
+          board += ".";
+        }
       }
-      strings += "\n";
+      board += "\n";
     }
-    return strings;
+    return board;
+  }
+
+  drop(block) {
+    this.falling = true;
   }
 }
