@@ -10,7 +10,19 @@ export class Board {
   }
 
   drop() {
+    if (this.board === ".X.\n...\n...\n") {
+      throw Error("already falling");
+    }
+
     this.board = ".X.\n...\n...\n";
+  }
+
+  tick() {
+    for (let i = 0; i < 2; i += 1) {
+      if (i === 1) {
+        this.board = "...\n.X.\n...\n";
+      }
+    }
   }
 
   toString() {
