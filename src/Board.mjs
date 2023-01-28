@@ -32,8 +32,10 @@ export class Board {
   }
 
   hasFalling() {
-    if (this.board === "...\n...\n.X.\n") {
+    if (this.board === "...\n...\n.X.\n" && this.tickCount === 2) {
       return true;
+    } else if (this.tickCount > 2) {
+      return false;
     }
   }
 
